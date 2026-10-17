@@ -1,0 +1,2324 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-palette="blue">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ApexShip Group - Global Delivery & Freight Logistics</title>
+    <!-- Google Fonts Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* ==========================================================================
+           CSS CUSTOM PROPERTIES & COLOR PALETTES
+           ========================================================================== */
+        :root {
+            /* Palette Defaults: Royal Blue (Default) */
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --primary-light: rgba(37, 99, 235, 0.12);
+            --primary-glow: rgba(37, 99, 235, 0.35);
+
+            --accent: #38bdf8;
+            --amber: #f59e0b;
+            --emerald: #10b981;
+            --rose: #f43f5e;
+
+            --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 18px;
+            --radius-xl: 24px;
+            --radius-full: 9999px;
+
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            --max-width: 1280px;
+        }
+
+        /* Dark Theme Default Variables */
+        [data-theme="dark"] {
+            --bg-body: #090d16;
+            --bg-card: #111827;
+            --bg-card-alt: #1f2937;
+            --bg-input: #0b1120;
+            --bg-header: rgba(9, 13, 22, 0.88);
+            
+            --border: #1f2937;
+            --border-light: rgba(255, 255, 255, 0.08);
+
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
+            --shadow-xl: 0 20px 35px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Light Theme Overrides */
+        [data-theme="light"] {
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-card-alt: #f1f5f9;
+            --bg-input: #ffffff;
+            --bg-header: rgba(255, 255, 255, 0.9);
+
+            --border: #e2e8f0;
+            --border-light: rgba(0, 0, 0, 0.06);
+
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.08);
+            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Dynamic Color Palette Options */
+        [data-palette="emerald"] {
+            --primary: #10b981;
+            --primary-hover: #059669;
+            --primary-light: rgba(16, 185, 129, 0.12);
+            --primary-glow: rgba(16, 185, 129, 0.35);
+        }
+
+        [data-palette="orange"] {
+            --primary: #f97316;
+            --primary-hover: #ea580c;
+            --primary-light: rgba(249, 115, 22, 0.12);
+            --primary-glow: rgba(249, 115, 22, 0.35);
+        }
+
+        [data-palette="purple"] {
+            --primary: #8b5cf6;
+            --primary-hover: #7c3aed;
+            --primary-light: rgba(139, 92, 246, 0.12);
+            --primary-glow: rgba(139, 92, 246, 0.35);
+        }
+
+        /* ==========================================================================
+           BASE & RESET STYLES
+           ========================================================================== */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        button, input, select, textarea {
+            font-family: inherit;
+            font-size: inherit;
+            border: none;
+            outline: none;
+        }
+
+        button {
+            cursor: pointer;
+            background: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 680px;
+            margin: 0 auto 3.5rem auto;
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--primary);
+            background-color: var(--primary-light);
+            padding: 0.35rem 0.85rem;
+            border-radius: var(--radius-full);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-top: 0.75rem;
+        }
+
+        /* ==========================================================================
+           BUTTONS & BADGES
+           ========================================================================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            font-weight: 700;
+            font-size: 0.9375rem;
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 4px 14px var(--primary-glow);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--primary-glow);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--bg-card-alt);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-icon {
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .btn-icon:hover {
+            background-color: var(--bg-card-alt);
+            color: var(--text-primary);
+            border-color: var(--primary);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .badge-success {
+            background-color: rgba(16, 185, 129, 0.15);
+            color: var(--emerald);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .badge-warning {
+            background-color: rgba(245, 158, 11, 0.15);
+            color: var(--amber);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        /* ==========================================================================
+           HEADER & NAVIGATION
+           ========================================================================== */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: var(--bg-header);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-light);
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            box-shadow: 0 4px 12px var(--primary-glow);
+        }
+
+        .logo-text {
+            font-size: 1.35rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            letter-spacing: -0.03em;
+        }
+
+        .logo-text span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.75rem;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        /* Theme & Palette Picker Dropdowns */
+        .palette-selector {
+            display: flex;
+            gap: 0.35rem;
+            background-color: var(--bg-card-alt);
+            padding: 0.25rem;
+            border-radius: var(--radius-full);
+            border: 1px solid var(--border);
+        }
+
+        .palette-dot {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .palette-dot:hover {
+            transform: scale(1.15);
+        }
+
+        .palette-dot.active {
+            border-color: var(--text-primary);
+        }
+
+        .mobile-toggle {
+            display: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+        }
+
+        /* ==========================================================================
+           HERO SECTION
+           ========================================================================== */
+        .hero {
+            padding: 5rem 0 6rem 0;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle at 80% 20%, var(--primary-light) 0%, transparent 40%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 3.5rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.75rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+        }
+
+        .hero-title .highlight {
+            color: var(--primary);
+            position: relative;
+        }
+
+        .hero-desc {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Quick Tracking Input Card */
+        .quick-track-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 1.25rem;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .track-form-group {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .track-input-wrapper {
+            position: relative;
+            flex: 1;
+        }
+
+        .track-input-wrapper i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .track-input {
+            width: 100%;
+            background-color: var(--bg-input);
+            border: 1px solid var(--border);
+            padding: 0.875rem 1rem 0.875rem 2.75rem;
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-family: var(--font-mono);
+            font-size: 0.9375rem;
+            transition: var(--transition);
+        }
+
+        .track-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        .sample-tags {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.85rem;
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+            flex-wrap: wrap;
+        }
+
+        .sample-btn {
+            color: var(--primary);
+            font-family: var(--font-mono);
+            font-weight: 700;
+            padding: 0.15rem 0.5rem;
+            background-color: var(--primary-light);
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+
+        .sample-btn:hover {
+            background-color: var(--primary);
+            color: #ffffff;
+        }
+
+        /* Hero Graphic Illustration Card */
+        .hero-graphic-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+        }
+
+        .graphic-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .graphic-status {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .status-icon-box {
+            width: 44px;
+            height: 44px;
+            background-color: rgba(16, 185, 129, 0.15);
+            color: var(--emerald);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .graphic-route {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .progress-bar-container {
+            height: 8px;
+            background-color: var(--bg-card-alt);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 72%;
+            background: linear-gradient(90deg, var(--primary), var(--emerald));
+            border-radius: var(--radius-full);
+            animation: pulse-bar 2.5s infinite ease-in-out;
+        }
+
+        @keyframes pulse-bar {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            margin-top: 3.5rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.25rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            font-family: var(--font-mono);
+        }
+
+        .stat-item p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        /* ==========================================================================
+           TRACKING SECTION & TIMELINE MODAL
+           ========================================================================== */
+        .tracking-section {
+            padding: 6rem 0;
+            background-color: var(--bg-card-alt);
+        }
+
+        .tracking-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .tracking-header-bar {
+            padding: 2.5rem;
+            background-color: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .tracking-body {
+            padding: 2.5rem;
+        }
+
+        .tracking-placeholder {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--text-secondary);
+        }
+
+        .placeholder-icon {
+            width: 64px;
+            height: 64px;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.25rem auto;
+        }
+
+        /* Tracking Timeline View */
+        .tracking-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.25rem;
+            background-color: var(--bg-card-alt);
+            padding: 1.5rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -2rem;
+            top: 4px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--text-muted);
+            border: 3px solid var(--bg-card);
+            box-shadow: 0 0 0 2px var(--border);
+        }
+
+        .timeline-item.active .timeline-dot {
+            background-color: var(--primary);
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+
+        .timeline-item.completed .timeline-dot {
+            background-color: var(--emerald);
+            box-shadow: 0 0 0 2px var(--emerald);
+        }
+
+        .timeline-content h5 {
+            font-size: 0.9375rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .timeline-content p {
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+        }
+
+        .timeline-date {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            margin-top: 0.25rem;
+        }
+
+        /* ==========================================================================
+           SHIPPING CALCULATOR SECTION
+           ========================================================================== */
+        .calculator-section {
+            padding: 6rem 0;
+            background-color: var(--bg-body);
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 2.5rem;
+            align-items: start;
+        }
+
+        .calc-form-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+        }
+
+        .form-control {
+            width: 100%;
+            background-color: var(--bg-input);
+            border: 1px solid var(--border);
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-size: 0.9375rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        /* Speed tier selector cards */
+        .speed-options {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .speed-card {
+            background-color: var(--bg-input);
+            border: 1px solid var(--border);
+            padding: 0.875rem 0.5rem;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .speed-card.active {
+            border-color: var(--primary);
+            background-color: var(--primary-light);
+        }
+
+        .speed-card h5 {
+            font-size: 0.8125rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .speed-card span {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            display: block;
+            margin-top: 0.15rem;
+        }
+
+        /* Range Slider Styling */
+        .range-slider-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .slider-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .range-input {
+            width: 100%;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        /* Quote Summary Box */
+        .quote-summary-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-xl);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .quote-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.875rem;
+        }
+
+        .quote-item span:last-child {
+            color: var(--text-primary);
+            font-family: var(--font-mono);
+            font-weight: 700;
+        }
+
+        .quote-total-box {
+            background-color: var(--bg-card-alt);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: var(--radius-lg);
+            margin: 1.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .quote-price {
+            font-size: 2.25rem;
+            font-weight: 900;
+            color: var(--primary);
+            font-family: var(--font-mono);
+        }
+
+        /* ==========================================================================
+           SERVICES SECTION
+           ========================================================================== */
+        .services-section {
+            padding: 6rem 0;
+            background-color: var(--bg-card-alt);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2.25rem;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary);
+        }
+
+        .service-icon {
+            width: 52px;
+            height: 52px;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h4 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .service-card p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-link {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.875rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .service-link:hover {
+            gap: 0.6rem;
+        }
+
+        /* ==========================================================================
+           TESTIMONIALS & FAQ SECTION
+           ========================================================================== */
+        .testimonials-section {
+            padding: 6rem 0;
+            background-color: var(--bg-body);
+        }
+
+        .testimonial-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+        }
+
+        .stars {
+            color: var(--amber);
+            display: flex;
+            justify-content: center;
+            gap: 0.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .quote-text {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+        }
+
+        .testimonial-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* FAQ Accordion */
+        .faq-section {
+            padding: 6rem 0;
+            background-color: var(--bg-card-alt);
+        }
+
+        .faq-accordion {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .faq-item {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .faq-header {
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .faq-body {
+            padding: 0 1.5rem 1.25rem 1.5rem;
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            display: none;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-body {
+            display: block;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* ==========================================================================
+           BOOKING & CONTACT SECTION
+           ========================================================================== */
+        .contact-section {
+            padding: 6rem 0;
+            background-color: var(--bg-body);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 3.5rem;
+            align-items: center;
+        }
+
+        .contact-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* ==========================================================================
+           FOOTER
+           ========================================================================== */
+        .footer {
+            background-color: var(--bg-card);
+            color: var(--text-secondary);
+            padding: 5rem 0 2rem 0;
+            border-top: 1px solid var(--border);
+            font-size: 0.875rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-col h5 {
+            color: var(--text-primary);
+            font-size: 0.9375rem;
+            font-weight: 800;
+            margin-bottom: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* ==========================================================================
+           MODAL & TOAST NOTIFICATION
+           ========================================================================== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            background-color: var(--bg-card);
+            width: 100%;
+            max-width: 600px;
+            border-radius: var(--radius-xl);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--border);
+            position: relative;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            color: var(--text-muted);
+            font-size: 1.25rem;
+        }
+
+        .modal-close:hover {
+            color: var(--text-primary);
+        }
+
+        .toast-container {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1100;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            pointer-events: none;
+        }
+
+        .toast {
+            background-color: var(--bg-card);
+            color: var(--text-primary);
+            padding: 1rem 1.5rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--primary);
+            box-shadow: var(--shadow-xl);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            pointer-events: auto;
+            transform: translateX(100%);
+            transition: var(--transition);
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        /* ==========================================================================
+           RESPONSIVE MEDIA QUERIES
+           ========================================================================== */
+        @media (max-width: 1200px) {
+            .hero-grid {
+                grid-template-columns: 1.1fr 0.9fr;
+                gap: 2rem;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1.5fr repeat(3, 1fr);
+                gap: 1.5rem;
+            }
+        }
+
+    /* --------------------------------------------------------------------------
+    4. Tablets & iPad Landscape (Max Width: 1024px)
+    -------------------------------------------------------------------------- */
+        @media (max-width: 1024px) {
+            .hero-grid,
+            .calculator-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content {
+                text-align: center;
+                max-width: 760px;
+                margin: 0 auto;
+            }
+
+            .hero-badge,
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .hero-graphic-card {
+                max-width: 600px;
+                margin: 1.5rem auto 0;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2.5rem 1.5rem;
+            }
+
+            .calc-sidebar {
+                position: static;
+                margin-top: 1.5rem;
+            }
+        }
+
+        /* --------------------------------------------------------------------------
+        5. Mobile Tablets & Large Phones (Max Width: 768px)
+        -------------------------------------------------------------------------- */
+        @media (max-width: 768px) {
+        /* Navigation Drawer Setup */
+            .navbar {
+                padding: 1rem var(--container-padding);
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 340px;
+                height: 100vh;
+                background-color: var(--bg-card, #ffffff);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 5rem 2rem 2rem;
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
+                transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+                z-index: 999;
+                overflow-y: auto;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+
+            .nav-links a {
+                display: block;
+                width: 100%;
+                font-size: 1.15rem;
+                padding: 0.75rem 0;
+                border-bottom: 1px solid var(--border-color, #e2e8f0);
+            }
+
+            .mobile-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 44px;
+                height: 44px;
+                background: transparent;
+                border: none;
+                cursor: pointer;
+                z-index: 1000;
+            }
+
+            /* Interactive Tracking Box Mobile Adjustments */
+            .track-form-group {
+                flex-direction: column;
+                background: transparent;
+                box-shadow: none;
+                border: none;
+                padding: 0;
+                gap: 0.75rem;
+            }
+
+            .track-input-wrapper {
+                background: var(--bg-card, #ffffff);
+                border: 1px solid var(--border-color, #cbd5e1);
+                border-radius: 12px;
+                width: 100%;
+            }
+
+            .track-btn {
+                width: 100%;
+                border-radius: 12px;
+                padding: 0.9rem;
+                justify-content: center;
+            }
+
+            /* Form and Radio Options Stacking */
+            .speed-options {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            /* Modal Dialog Responsive Fixes */
+            .modal-content {
+                width: 95%;
+                max-height: 90vh;
+                padding: 1.5rem;
+                margin: 1rem;
+                overflow-y: auto;
+                border-radius: 16px;
+            }
+        }
+
+        /* --------------------------------------------------------------------------
+        6. Standard Phones (Max Width: 576px)
+        -------------------------------------------------------------------------- */
+        @media (max-width: 576px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .speed-options {
+                grid-template-columns: 1fr; /* Single column rate options on phones */
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .hero-actions .btn {
+                width: 100%;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .timeline-step {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .timeline-step::before {
+                left: 15px;
+            }
+        }
+
+        /* --------------------------------------------------------------------------
+        7. Very Small Screen Phones (Max Width: 400px)
+        -------------------------------------------------------------------------- */
+        @media (max-width: 400px) {
+            :root {
+                --container-padding: 0.85rem;
+            }
+
+            .btn {
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .calc-card, 
+            .modal-content, 
+            .hero-graphic-card {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOAST CONTAINER -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- BOOKING MODAL -->
+    <div id="bookingModal" class="modal-overlay">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeModal()"><i data-lucide="x"></i></button>
+            <h3 style="font-size: 1.5rem; font-weight: 900; margin-bottom: 0.5rem; color: var(--text-primary);">Consignment Dispatch Order</h3>
+            <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 1.5rem;">Submit details to schedule courier pickup and generate waybill barcode.</p>
+            
+            <form onsubmit="confirmBooking(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Sender Full Name</label>
+                        <input type="text" class="form-control" required placeholder="Alexander Vance">
+                    </div>
+                    <div class="form-group">
+                        <label>Recipient Name</label>
+                        <input type="text" class="form-control" required placeholder="Elena Rostova">
+                    </div>
+                </div>
+                <div class="form-group" style="margin-bottom: 1.25rem;">
+                    <label>Pickup Location Address</label>
+                    <input type="text" class="form-control" required placeholder="Building 4, Freight Avenue, Logistics Zone">
+                </div>
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label>Package Description / Contents</label>
+                    <input type="text" class="form-control" required placeholder="Electronics, High-Value Document, Machine Parts">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Schedule Immediate Dispatch</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SERVICE DETAIL MODAL -->
+    <div id="serviceModal" class="modal-overlay">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeServiceModal()"><i data-lucide="x"></i></button>
+            <div id="serviceModalContent"></div>
+        </div>
+    </div>
+
+    <!-- HEADER NAVIGATION -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i data-lucide="box"></i>
+                </div>
+                <div class="logo-text">ApexShip <span>Group</span></div>
+            </a>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="#hero" class="nav-link">Home</a>
+                <a href="#tracking" class="nav-link">Track Parcel</a>
+                <a href="#calculator" class="nav-link">Rate Estimator</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+
+            <div class="nav-controls">
+                <!-- Theme Switcher -->
+                <button class="btn-icon" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+                    <i data-lucide="sun" id="themeIcon"></i>
+                </button>
+
+                <!-- Color Palette Switcher -->
+                <div class="palette-selector" title="Change Accent Palette">
+                    <div class="palette-dot active" style="background: #2563eb;" onclick="setPalette('blue')"></div>
+                    <div class="palette-dot" style="background: #10b981;" onclick="setPalette('emerald')"></div>
+                    <div class="palette-dot" style="background: #f97316;" onclick="setPalette('orange')"></div>
+                    <div class="palette-dot" style="background: #8b5cf6;" onclick="setPalette('purple')"></div>
+                </div>
+
+                <a href="#calculator" class="btn btn-primary">Book Shipment</a>
+
+                <button class="mobile-toggle" id="mobileToggle">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="section-tag">
+                        <i data-lucide="shield-check" style="width: 14px;"></i> Enterprise Freight & Express Delivery
+                    </div>
+                    <h1 class="hero-title">
+                        Global Cargo, Precision Timelines & <span class="highlight">Seamless Express</span>.
+                    </h1>
+                    <p class="hero-desc">
+                        ApexShip Group delivers frictionless logistics solutions across 190+ countries with automated customs processing, real-time telemetry, and door-to-door cargo handling.
+                    </p>
+
+                    <!-- Quick Tracking Form -->
+                    <div class="quick-track-card">
+                        <form onsubmit="handleHeroTrack(event)">
+                            <div class="track-form-group">
+                                <div class="track-input-wrapper">
+                                    <i data-lucide="search"></i>
+                                    <input type="text" id="heroTrackInput" class="track-input" placeholder="Enter Waybill Code (e.g. APEX123456)" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Track Package</button>
+                            </div>
+                        </form>
+                        <div class="sample-tags">
+                            <span>Sample Tracking IDs:</span>
+                            <button type="button" class="sample-btn" onclick="fillAndTrack('APEX123456')">APEX123456</button>
+                            <button type="button" class="sample-btn" onclick="fillAndTrack('APEX889012')">APEX889012</button>
+                            <button type="button" class="sample-btn" onclick="fillAndTrack('APEX991002')">APEX991002</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Graphic Visual Card -->
+                <div class="hero-graphic-card">
+                    <div class="graphic-header">
+                        <div class="graphic-status">
+                            <div class="status-icon-box">
+                                <i data-lucide="plane"></i>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 0.9375rem; font-weight: 800;">Air Freight Priority #APEX123456</h4>
+                                <span style="font-size: 0.75rem; color: var(--text-secondary); font-family: var(--font-mono);">Flight APX-809</span>
+                            </div>
+                        </div>
+                        <span class="badge badge-success">In Transit</span>
+                    </div>
+
+                    <div class="graphic-route">
+                        <span>Origin: <strong>Frankfurt (FRA)</strong></span>
+                        <span>Dest: <strong>Singapore (SIN)</strong></span>
+                    </div>
+
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill"></div>
+                    </div>
+
+                    <div style="background-color: var(--bg-card-alt); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <i data-lucide="navigation" style="color: var(--primary);"></i>
+                            <div>
+                                <p style="font-size: 0.75rem; color: var(--text-secondary);">Current Waypoint</p>
+                                <p style="font-size: 0.875rem; font-weight: 800;">Dubai International Transit Hub</p>
+                            </div>
+                        </div>
+                        <span style="font-size: 0.8125rem; color: var(--amber); font-family: var(--font-mono); font-weight: 700;">ETA: 14h 30m</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="stats-bar">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3 id="stat1">8.4M+</h3>
+                        <p>Consignments Delivered</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3 style="color: var(--primary);" id="stat2">99.9%</h3>
+                        <p>On-Time Arrival</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3 id="stat3">190+</h3>
+                        <p>Global Hubs</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3 id="stat4">24/7</h3>
+                        <p>Telemetry Tracking</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIVE TRACKING SECTION -->
+    <section id="tracking" class="tracking-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Live Satellite Telemetry</span>
+                <h2 class="section-title">Track Consignment Status</h2>
+                <p class="section-subtitle">Real-time status tracking, route checkpoints, and estimated delivery times.</p>
+            </div>
+
+            <div class="tracking-card">
+                <div class="tracking-header-bar">
+                    <form onsubmit="handleSectionTrack(event)" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <div class="track-input-wrapper" style="flex: 1; min-width: 280px;">
+                            <i data-lucide="barcode"></i>
+                            <input type="text" id="sectionTrackInput" class="track-input" placeholder="Enter Waybill or Consignment ID..." required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Search Consignment</button>
+                    </form>
+                </div>
+
+                <div class="tracking-body">
+                    <div id="trackingPlaceholder" class="tracking-placeholder">
+                        <div class="placeholder-icon">
+                            <i data-lucide="package-search"></i>
+                        </div>
+                        <h4 style="font-size: 1.125rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--text-primary);">Awaiting Consignment Input</h4>
+                        <p style="font-size: 0.875rem;">Enter a tracking code above or click a sample ID in the hero section.</p>
+                    </div>
+
+                    <div id="trackingResults" style="display: none;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div>
+                                <h4 id="resTrackNum" style="font-size: 1.75rem; font-weight: 900; font-family: var(--font-mono); color: var(--text-primary);">APEX123456</h4>
+                                <p id="resService" style="font-size: 0.8125rem; color: var(--text-secondary);">Express Air Priority Cargo</p>
+                            </div>
+                            <span id="resBadge" class="badge badge-success">In Transit</span>
+                        </div>
+
+                        <div class="tracking-info-grid">
+                            <div>
+                                <span style="font-size: 0.75rem; color: var(--text-secondary); font-weight: 800; text-transform: uppercase;">Origin Hub</span>
+                                <p id="resOrigin" style="font-weight: 800; color: var(--text-primary);">Frankfurt, DE</p>
+                            </div>
+                            <div>
+                                <span style="font-size: 0.75rem; color: var(--text-secondary); font-weight: 800; text-transform: uppercase;">Destination</span>
+                                <p id="resDest" style="font-weight: 800; color: var(--text-primary);">Singapore Gateway</p>
+                            </div>
+                            <div>
+                                <span style="font-size: 0.75rem; color: var(--text-secondary); font-weight: 800; text-transform: uppercase;">Estimated Arrival</span>
+                                <p id="resETA" style="font-weight: 800; color: var(--primary);">Oct 18, 2026</p>
+                            </div>
+                        </div>
+
+                        <h5 style="font-size: 1rem; font-weight: 800; margin-bottom: 1rem; color: var(--text-primary);">Detailed Timeline Checkpoints</h5>
+                        <div class="timeline" id="timelineContainer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DYNAMIC SHIPPING RATE CALCULATOR -->
+    <section id="calculator" class="calculator-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Instant Quote Generator</span>
+                <h2 class="section-title">Shipping Rate Estimator</h2>
+                <p class="section-subtitle">Calculate transparent freight estimates based on destination, weight, dimensions, and tier speed.</p>
+            </div>
+
+            <div class="calculator-grid">
+                <div class="calc-form-card">
+                    <form id="calcForm" oninput="updateCalculator()">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Origin Region</label>
+                                <select id="calcOrigin" class="form-control">
+                                    <option value="US">North America (USA/Canada)</option>
+                                    <option value="EU">Europe (EU/UK)</option>
+                                    <option value="ASIA">Asia Pacific Region</option>
+                                    <option value="AFRICA">Africa & Middle East</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Destination Region</label>
+                                <select id="calcDest" class="form-control">
+                                    <option value="ASIA">Asia Pacific Region</option>
+                                    <option value="EU">Europe (EU/UK)</option>
+                                    <option value="US">North America (USA/Canada)</option>
+                                    <option value="AFRICA">Africa & Middle East</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 1.5rem;">
+                            <div class="slider-header">
+                                <label>Shipment Weight</label>
+                                <span id="weightVal" style="color: var(--primary); font-weight: 800; font-family: var(--font-mono);">5.0 kg</span>
+                            </div>
+                            <input type="range" id="calcWeight" class="range-input" min="0.5" max="100" step="0.5" value="5.0">
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 1.5rem;">
+                            <label>Delivery Speed / Tier</label>
+                            <div class="speed-options">
+                                <div class="speed-card" onclick="selectSpeed(this, 'standard')">
+                                    <h5>Standard</h5>
+                                    <span>4-6 Days</span>
+                                </div>
+                                <div class="speed-card active" onclick="selectSpeed(this, 'express')">
+                                    <h5>Express</h5>
+                                    <span>2-3 Days</span>
+                                </div>
+                                <div class="speed-card" onclick="selectSpeed(this, 'sameday')">
+                                    <h5>Same-Day</h5>
+                                    <span>24 Hours</span>
+                                </div>
+                                <div class="speed-card" onclick="selectSpeed(this, 'freight')">
+                                    <h5>Freight</h5>
+                                    <span>Bulk Air/Sea</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                            <label style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--text-secondary);">Optional Cargo Services</label>
+                            <div style="display: flex; gap: 1rem; align-items: center;">
+                                <input type="checkbox" id="calcInsurance" checked style="accent-color: var(--primary); width: 18px; height: 18px;">
+                                <label for="calcInsurance" style="font-size: 0.875rem; color: var(--text-secondary); cursor: pointer;">Full Cargo Loss Protection (+$8.00)</label>
+                            </div>
+                            <div style="display: flex; gap: 1rem; align-items: center;">
+                                <input type="checkbox" id="calcSignature" style="accent-color: var(--primary); width: 18px; height: 18px;">
+                                <label for="calcSignature" style="font-size: 0.875rem; color: var(--text-secondary); cursor: pointer;">Direct Recipient Signature Required (+$4.00)</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Quote Summary Output -->
+                <div class="quote-summary-card">
+                    <div>
+                        <h4 style="font-size: 1.25rem; font-weight: 900; border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 1.5rem; color: var(--text-primary);">Estimate Breakdown</h4>
+                        
+                        <div class="quote-item">
+                            <span>Base Freight Rate</span>
+                            <span id="priceBase">$25.00</span>
+                        </div>
+                        <div class="quote-item">
+                            <span>Weight Surcharge</span>
+                            <span id="priceWeight">$22.50</span>
+                        </div>
+                        <div class="quote-item">
+                            <span>Tier Speed Multiplier</span>
+                            <span id="priceSpeed">1.5x</span>
+                        </div>
+                        <div class="quote-item">
+                            <span>Selected Add-ons</span>
+                            <span id="priceAddons">$8.00</span>
+                        </div>
+
+                        <div class="quote-total-box">
+                            <div>
+                                <span style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; font-weight: 800;">Estimated Cost</span>
+                                <div class="quote-price" id="priceTotal">$79.25</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" style="width: 100%; padding: 1rem;" onclick="openBookingModal()">
+                        Proceed to Dispatch Booking <i data-lucide="arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE SERVICES SECTION -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Core Offerings</span>
+                <h2 class="section-title">Logistics Capabilities</h2>
+                <p class="section-subtitle">Scalable delivery options designed for international enterprises and local dispatch needs.</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div>
+                        <div class="service-icon"><i data-lucide="plane"></i></div>
+                        <h4>Express Air Freight</h4>
+                        <p>Time-critical global delivery with priority customs clearance, dedicated cargo hold space, and door-to-door tracking.</p>
+                    </div>
+                    <button class="service-link" onclick="openServiceDetail('air')">Explore Details <i data-lucide="chevron-right"></i></button>
+                </div>
+
+                <div class="service-card">
+                    <div>
+                        <div class="service-icon"><i data-lucide="ship"></i></div>
+                        <h4>Ocean Container Lines</h4>
+                        <p>Cost-effective FCL and LCL containerized sea shipping connecting major ports across continents.</p>
+                    </div>
+                    <button class="service-link" onclick="openServiceDetail('ocean')">Explore Details <i data-lucide="chevron-right"></i></button>
+                </div>
+
+                <div class="service-card">
+                    <div>
+                        <div class="service-icon"><i data-lucide="warehouse"></i></div>
+                        <h4>Automated Warehousing</h4>
+                        <p>Climate-controlled inventory storage, e-commerce API integrations, and automated pick and pack handling.</p>
+                    </div>
+                    <button class="service-link" onclick="openServiceDetail('warehouse')">Explore Details <i data-lucide="chevron-right"></i></button>
+                </div>
+
+                <div class="service-card">
+                    <div>
+                        <div class="service-icon"><i data-lucide="file-check"></i></div>
+                        <h4>Customs Brokerage</h4>
+                        <p>Frictionless import and export customs documentation, tariff classification, and compliance advisory.</p>
+                    </div>
+                    <button class="service-link" onclick="openServiceDetail('customs')">Explore Details <i data-lucide="chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS & FAQ SECTION -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Verified Feedback</span>
+                <h2 class="section-title">Trusted By Supply Chain Leaders</h2>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="stars">
+                    <i data-lucide="star" style="fill: currentColor;"></i>
+                    <i data-lucide="star" style="fill: currentColor;"></i>
+                    <i data-lucide="star" style="fill: currentColor;"></i>
+                    <i data-lucide="star" style="fill: currentColor;"></i>
+                    <i data-lucide="star" style="fill: currentColor;"></i>
+                </div>
+                <p class="quote-text" id="testiQuote">"ApexShip Group transformed our regional logistics distribution. Their telemetry precision and automated clearance cut transit delays by 35%."</p>
+                <div class="user-info">
+                    <div class="avatar" id="testiAvatar">AV</div>
+                    <div style="text-align: left;">
+                        <h5 style="font-size: 0.9375rem; font-weight: 800;" id="testiName">Alexander Vance</h5>
+                        <p style="font-size: 0.75rem; color: var(--text-secondary);" id="testiRole">Global Logistics Director, Apex Industrial</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-controls">
+                <button class="btn-icon" onclick="prevTestimonial()"><i data-lucide="arrow-left"></i></button>
+                <button class="btn-icon" onclick="nextTestimonial()"><i data-lucide="arrow-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ ACCORDION SECTION -->
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Frequently Asked Questions</span>
+                <h2 class="section-title">Common Logistics Queries</h2>
+            </div>
+
+            <div class="faq-accordion">
+                <div class="faq-item active" onclick="toggleFaq(this)">
+                    <div class="faq-header">
+                        <span>How does ApexShip Group provide live satellite tracking?</span>
+                        <i data-lucide="chevron-down" class="faq-icon"></i>
+                    </div>
+                    <div class="faq-body">
+                        Every package dispatched through ApexShip is linked to a GPS/cellular telemetry barcode. Scan updates automatically refresh on your dashboard at every sorting hub, port exit, and driver vehicle transfer.
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-header">
+                        <span>What insurance coverage options are included with shipments?</span>
+                        <i data-lucide="chevron-down" class="faq-icon"></i>
+                    </div>
+                    <div class="faq-body">
+                        Standard shipments include basic declared value protection up to $100. Our premium Cargo Loss Protection add-on guarantees 100% full invoice replacement for lost or damaged goods during transit.
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-header">
+                        <span>How are international customs duties and tariffs handled?</span>
+                        <i data-lucide="chevron-down" class="faq-icon"></i>
+                    </div>
+                    <div class="faq-body">
+                        ApexShip offers both DDP (Delivered Duty Paid) and DDU (Delivered Duty Unpaid) services. Our digital customs clearance engine pre-files duty paperwork to prevent border holds.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT / QUOTE REQUEST -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <div>
+                    <span class="section-tag">Direct Inquiry</span>
+                    <h2 class="section-title" style="margin-top: 0.5rem;">Need Custom Enterprise Shipping Solutions?</h2>
+                    <p class="section-subtitle">Reach out to our global accounts team to set up recurring contracts or API integrations.</p>
+                </div>
+
+                <div class="contact-card">
+                    <form onsubmit="handleContactSubmit(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Your Name</label>
+                                <input type="text" class="form-control" required placeholder="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label>Work Email</label>
+                                <input type="email" class="form-control" required placeholder="john@company.com">
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 1.25rem;">
+                            <label>Inquiry Type</label>
+                            <select class="form-control">
+                                <option>Corporate Account Setup</option>
+                                <option>Bulk Ocean Cargo Quote</option>
+                                <option>API Integration Support</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 1.5rem;">
+                            <label>Message / Specifications</label>
+                            <textarea class="form-control" rows="4" required placeholder="Describe cargo volume, route frequencies, or special handling..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Account Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="#" class="logo" style="margin-bottom: 1.25rem;">
+                        <div class="logo-icon"><i data-lucide="box"></i></div>
+                        <div class="logo-text">ApexShip <span>Group</span></div>
+                    </a>
+                    <p style="max-width: 320px; line-height: 1.6;">Global freight forwarding, express courier networks, and technology-first logistics infrastructure.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h5>Quick Navigation</h5>
+                    <div class="footer-links">
+                        <a href="#tracking">Track Consignment</a>
+                        <a href="#calculator">Rate Calculator</a>
+                        <a href="#services">Air & Sea Services</a>
+                        <a href="#faq">Help & FAQ</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h5>Compliance</h5>
+                    <div class="footer-links">
+                        <a href="#">Terms & Conditions</a>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Cargo Coverage Policy</a>
+                        <a href="#">Restricted Goods</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h5>Newsletter</h5>
+                    <p style="margin-bottom: 1rem; font-size: 0.8125rem;">Subscribe for freight market intelligence.</p>
+                    <form onsubmit="handleNewsletter(event)" style="display: flex; gap: 0.5rem;">
+                        <input type="email" class="form-control" placeholder="Work email" required style="font-size: 0.8125rem;">
+                        <button type="submit" class="btn btn-primary" style="padding: 0.5rem 1rem;"><i data-lucide="send"></i></button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 ApexShip Group Logistics Inc. All rights reserved.</p>
+                <div style="display: flex; gap: 1.5rem;">
+                    <a href="#">Global Hub Status</a>
+                    <a href="#">Security Portal</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Sample Tracking Database
+        const trackingDb = {
+            'APEX123456': {
+                number: 'APEX123456',
+                service: 'Priority Air Express Freight',
+                status: 'In Transit',
+                badgeClass: 'badge-success',
+                origin: 'Frankfurt Airport (FRA)',
+                dest: 'Singapore Changi (SIN)',
+                eta: 'Oct 18, 2026 @ 04:30 PM',
+                timeline: [
+                    { title: 'In Transit via Air Vessel', desc: 'Flight APX-809 en route over Dubai Corridor', date: 'Oct 17, 08:30 AM', state: 'active' },
+                    { title: 'Customs Export Clearance', desc: 'Frankfurt Hub Verification Complete', date: 'Oct 16, 11:20 PM', state: 'completed' },
+                    { title: 'Consignment Received', desc: 'Apex Central Depot Processing', date: 'Oct 16, 02:00 PM', state: 'completed' }
+                ]
+            },
+            'APEX889012': {
+                number: 'APEX889012',
+                service: 'Same-Day Urban Courier',
+                status: 'Delivered',
+                badgeClass: 'badge-success',
+                origin: 'London Gateway Depot',
+                dest: 'Financial District Office',
+                eta: 'Delivered Oct 16',
+                timeline: [
+                    { title: 'Delivered & Signed', desc: 'Signed by Building Security (H. Vance)', date: 'Oct 16, 02:15 PM', state: 'completed' },
+                    { title: 'Out for Courier Delivery', desc: 'Assigned to Electric Van #14', date: 'Oct 16, 10:30 AM', state: 'completed' },
+                    { title: 'Depot Pick Up', desc: 'Waybill scanned at regional hub', date: 'Oct 16, 08:00 AM', state: 'completed' }
+                ]
+            },
+            'APEX991002': {
+                number: 'APEX991002',
+                service: 'FCL Ocean Container Shipping',
+                status: 'Customs Inspection',
+                badgeClass: 'badge-warning',
+                origin: 'Shanghai Port (CN)',
+                dest: 'Port of Rotterdam (NL)',
+                eta: 'Oct 24, 2026',
+                timeline: [
+                    { title: 'Customs Administrative Hold', desc: 'Routine Port Authority Inspection', date: 'Oct 17, 06:00 AM', state: 'active' },
+                    { title: 'Container Unloaded', desc: 'Rotterdam Gateway Terminal', date: 'Oct 16, 09:00 PM', state: 'completed' }
+                ]
+            }
+        };
+
+        // Theme Switcher Logic
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            const next = current === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', next);
+
+            const icon = document.getElementById('themeIcon');
+            icon.setAttribute('data-lucide', next === 'dark' ? 'sun' : 'moon');
+            lucide.createIcons();
+            showToast(`Switched to ${next} mode`);
+        }
+
+        // Color Palette Switcher
+        function setPalette(paletteName) {
+            document.documentElement.setAttribute('data-palette', paletteName);
+            document.querySelectorAll('.palette-dot').forEach(dot => dot.classList.remove('active'));
+            event.target.classList.add('active');
+            showToast(`Color palette updated: ${paletteName.toUpperCase()}`);
+        }
+
+        // Mobile Menu Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Quick Search Fillers
+        function fillAndTrack(code) {
+            document.getElementById('heroTrackInput').value = code;
+            document.getElementById('sectionTrackInput').value = code;
+            renderTrackingResults(code);
+            document.getElementById('tracking').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function handleHeroTrack(e) {
+            e.preventDefault();
+            const code = document.getElementById('heroTrackInput').value.trim();
+            fillAndTrack(code);
+        }
+
+        function handleSectionTrack(e) {
+            e.preventDefault();
+            const code = document.getElementById('sectionTrackInput').value.trim();
+            renderTrackingResults(code);
+        }
+
+        // Render Tracking Logic
+        function renderTrackingResults(code) {
+            const cleanCode = code.toUpperCase().trim();
+            const placeholder = document.getElementById('trackingPlaceholder');
+            const results = document.getElementById('trackingResults');
+
+            placeholder.style.display = 'none';
+            results.style.display = 'block';
+
+            let data = trackingDb[cleanCode];
+
+            if (!data) {
+                data = {
+                    number: cleanCode,
+                    service: 'Apex Express Standard Delivery',
+                    status: 'In Transit',
+                    badgeClass: 'badge-success',
+                    origin: 'Central Sorting Hub',
+                    dest: 'Destination Regional Center',
+                    eta: 'In 2 Business Days',
+                    timeline: [
+                        { title: 'En Route to Regional Hub', desc: 'Consignment scanned in transit', date: 'Today, 09:00 AM', state: 'active' },
+                        { title: 'Package Dispatched', desc: 'Waybill created', date: 'Yesterday, 04:00 PM', state: 'completed' }
+                    ]
+                };
+            }
+
+            document.getElementById('resTrackNum').textContent = data.number;
+            document.getElementById('resService').textContent = data.service;
+            document.getElementById('resBadge').textContent = data.status;
+            document.getElementById('resBadge').className = `badge ${data.badgeClass}`;
+            document.getElementById('resOrigin').textContent = data.origin;
+            document.getElementById('resDest').textContent = data.dest;
+            document.getElementById('resETA').textContent = data.eta;
+
+            const container = document.getElementById('timelineContainer');
+            container.innerHTML = '';
+
+            data.timeline.forEach(item => {
+                const el = document.createElement('div');
+                el.className = `timeline-item ${item.state}`;
+                el.innerHTML = `
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h5>${item.title}</h5>
+                        <p>${item.desc}</p>
+                        <div class="timeline-date">${item.date}</div>
+                    </div>
+                `;
+                container.appendChild(el);
+            });
+
+            showToast(`Tracking status loaded for ${cleanCode}`);
+        }
+
+        // Rate Calculator Logic
+        let selectedSpeed = 'express';
+
+        function selectSpeed(element, speed) {
+            document.querySelectorAll('.speed-card').forEach(card => card.classList.remove('active'));
+            element.classList.add('active');
+            selectedSpeed = speed;
+            updateCalculator();
+        }
+
+        function updateCalculator() {
+            const weight = parseFloat(document.getElementById('calcWeight').value);
+            document.getElementById('weightVal').textContent = `${weight.toFixed(1)} kg`;
+
+            const origin = document.getElementById('calcOrigin').value;
+            const dest = document.getElementById('calcDest').value;
+            const hasInsurance = document.getElementById('calcInsurance').checked;
+            const hasSignature = document.getElementById('calcSignature').checked;
+
+            let base = 25.00;
+            if (origin !== dest) base += 15.00;
+
+            let weightFee = weight * 4.50;
+
+            let speedMult = 1.0;
+            if (selectedSpeed === 'express') speedMult = 1.5;
+            if (selectedSpeed === 'sameday') speedMult = 2.5;
+            if (selectedSpeed === 'freight') speedMult = 0.9;
+
+            let addons = (hasInsurance ? 8.00 : 0) + (hasSignature ? 4.00 : 0);
+
+            let total = (base + weightFee) * speedMult + addons;
+
+            document.getElementById('priceBase').textContent = `$${base.toFixed(2)}`;
+            document.getElementById('priceWeight').textContent = `$${weightFee.toFixed(2)}`;
+            document.getElementById('priceSpeed').textContent = `${speedMult.toFixed(1)}x`;
+            document.getElementById('priceAddons').textContent = `$${addons.toFixed(2)}`;
+            document.getElementById('priceTotal').textContent = `$${total.toFixed(2)}`;
+        }
+
+        // Service Details Popups
+        const serviceDetails = {
+            air: {
+                title: 'Express Air Freight Details',
+                content: 'Our Priority Air Cargo network provides guaranteed charter space on commercial passenger and cargo flights. Ideal for high-value electronics, pharmaceuticals, and urgent manufacturing components.'
+            },
+            ocean: {
+                title: 'Ocean Freight Services',
+                content: 'Full Container Load (FCL) and Less than Container Load (LCL) consolidation connecting major ocean ports. Includes port-to-port and door-to-door drayage handling.'
+            },
+            warehouse: {
+                title: 'Automated Warehousing',
+                content: 'Over 2M sq ft of climate-controlled inventory space with barcode sorting, pick-and-pack fulfillment, and real-time inventory API sync.'
+            },
+            customs: {
+                title: 'Customs & Compliance Advisory',
+                content: 'Licensed customs brokers ready to assist with tariff duty classifications, import clearances, duty drawbacks, and regulatory documentation.'
+            }
+        };
+
+        function openServiceDetail(type) {
+            const detail = serviceDetails[type];
+            const modal = document.getElementById('serviceModal');
+            document.getElementById('serviceModalContent').innerHTML = `
+                <h3 style="font-size: 1.5rem; font-weight: 900; margin-bottom: 0.75rem;">${detail.title}</h3>
+                <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">${detail.content}</p>
+                <button class="btn btn-primary" onclick="closeServiceModal(); openBookingModal();" style="width: 100%;">Book This Service</button>
+            `;
+            modal.classList.add('active');
+        }
+
+        function closeServiceModal() {
+            document.getElementById('serviceModal').classList.remove('active');
+        }
+
+        // Modals & Feedback
+        function openBookingModal() {
+            document.getElementById('bookingModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('bookingModal').classList.remove('active');
+        }
+
+        function confirmBooking(e) {
+            e.preventDefault();
+            closeModal();
+            showToast('Consignment booked successfully! Pickup scheduled.');
+        }
+
+        // FAQ Accordion Toggle
+        function toggleFaq(element) {
+            const isActive = element.classList.contains('active');
+            document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('active'));
+            if (!isActive) element.classList.add('active');
+        }
+
+        // Testimonial Carousel State
+        const testimonials = [
+            {
+                quote: '"ApexShip Group transformed our regional logistics distribution. Their telemetry precision and automated clearance cut transit delays by 35%."',
+                avatar: 'AV',
+                name: 'Alexander Vance',
+                role: 'Global Logistics Director, Apex Industrial'
+            },
+            {
+                quote: '"The rate transparency and live satellite tracking give our e-commerce clients total peace of mind for international orders."',
+                avatar: 'ER',
+                name: 'Elena Rostova',
+                role: 'Supply Chain VP, GlobalTrade'
+            }
+        ];
+        let testiIndex = 0;
+
+        function nextTestimonial() {
+            testiIndex = (testiIndex + 1) % testimonials.length;
+            updateTestimonialUI();
+        }
+
+        function prevTestimonial() {
+            testiIndex = (testiIndex - 1 + testimonials.length) % testimonials.length;
+            updateTestimonialUI();
+        }
+
+        function updateTestimonialUI() {
+            const item = testimonials[testiIndex];
+            document.getElementById('testiQuote').textContent = item.quote;
+            document.getElementById('testiAvatar').textContent = item.avatar;
+            document.getElementById('testiName').textContent = item.name;
+            document.getElementById('testiRole').textContent = item.role;
+        }
+
+        // Handlers & Toast System
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            showToast('Account request submitted. A specialist will call you shortly.');
+            e.target.reset();
+        }
+
+        function handleNewsletter(e) {
+            e.preventDefault();
+            showToast('Subscribed to ApexShip Intelligence!');
+            e.target.reset();
+        }
+
+        function showToast(msg) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `<i data-lucide="check-circle" style="color: var(--primary);"></i> <span>${msg}</span>`;
+            container.appendChild(toast);
+            lucide.createIcons();
+
+            setTimeout(() => toast.classList.add('show'), 50);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        // Initialize state on load
+        window.addEventListener('DOMContentLoaded', () => {
+            updateCalculator();
+        });
+    </script>
+</body>
+</html>
